@@ -1,0 +1,85 @@
+*{
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav{
+   text-decoration: none; 
+   margin: 10px;
+   text-align: center;
+   background: url(images/image\ copy.png)no-repeat center center ;
+   background-size:cover;
+   min-height: 100vh; 
+   padding: 15px;
+   align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    justify-content: center;
+    margin: 10px;
+    font-size: 24px;
+    display: inline-block;
+}
+#header{
+    /* height: 50px;  */
+    /* text-decoration-color: white; */
+    /* font-size: 20px; */
+    /* margin-right: 200px; */
+    /* justify-content: space-between; */
+    /* width: auto; */
+    /* max-width: 100%; */
+    /* display: flex; */
+    /* align-items: center; */
+
+    background-color: rgb(17, 17, 17) !important;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1000;
+
+
+}
+
+h1{
+    text-align: center;
+    border-color:white;
+    color: white;
+    font-size: 70px;
+}
+#logo{
+    font-size: 35px;
+    color: rgb(244, 144, 5);
+    text-decoration: double;
+    padding: 10px;
+    text-align: center;
+}
+ul{
+    margin: 20px auto; 
+    padding: 0;
+    max-width: 90%;
+    list-style-type: none;
+}
+@media (max-width: 600px) {
+    body {
+    background-color: rgb(177, 230, 240);
+    overflow-x: hidden;
+}
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+body {
+background-color: rgb(244, 156, 180);
+}
+}
+@media (min-width: 1025px) {
+body {
+background-color: rgb(229, 178, 232);
+}
+}
+
+
+

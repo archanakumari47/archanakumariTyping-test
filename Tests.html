@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests</title>
+
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: url(images/image.png)no-repeat center center ;
+            background-size:cover;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            background-color: azure;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        #timer {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+        }
+        h2{
+            color: red;
+        }
+        @media (max-width: 600px) {
+            body {
+            background-color: pink;
+    }
+    }
+        @media (min-width: 601px) and (max-width: 1024px) {
+        body {
+        background-color: lightgreen;
+    }
+    }
+       @media (min-width: 1025px) {
+        body {
+        background-color: rgb(243, 8, 8);
+    }
+    }
+
+
+</style>
+<body>
+    <div class="container">
+        <h2>Typing Speed Test</h2>
+        <hr>
+        <p id="text">The quick brown fox jumps over the lazy dog.<br>
+             It lands gracefully and dashes ahead,<br>
+            searching for its next adventure.<br>
+            The sun shines brightly as the fox moves through<br>
+            the green fields, its fur glistening under the golden light.<br>
+            Meanwhile, the lazy dog stretches and yawns,<br> 
+            enjoying the warmth of the afternoon. Birds <br>
+            chirp in the distance as the fox continues its<br> 
+            journey, leaping over logs and dodging bushes.<br>
+            The quick brown fox never stops, <br>
+            always exploring, always running, while the lazy <br>
+            dog watches from afar, too comfortable to move.
+        </p>
+        <textarea id="inputText" placeholder="Start typing here..."></textarea>
+        <p>Time Left: <span id="timer">05:00</span> seconds</p>
+        <button onclick="startTest()">Start</button>
+        <button onclick="checkSpeed()">Check Speed</button>
+        <button onclick="stopTest()">Stop</button>
+        <p class="result" id="result"></p>
+    </div>
+     
+    <script>
+
+        let timerInterval;
+        let startTime;
+
+        function startTest() {
+            document.getElementById("inputText").value = "";
+            document.getElementById("inputText").disabled = false;
+            document.getElementById("inputText").focus();
+            document.getElementById("result").innerText = "";
+            
+            let timeLeft = 300; // 5 minutes
+            updateTimerDisplay(timeLeft);
+            
+            startTime = new Date().getTime();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay(timeLeft);
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    checkSpeed();
+                }
+            }, 1000);
+        }
+
+        function stopTest() {
+            clearInterval(timerInterval);
+            checkSpeed();
+        }
+
+        function checkSpeed() {
+            document.getElementById("inputText").disabled = true;
+            let textEntered = document.getElementById("inputText").value.trim();
+            let wordCount = textEntered.length > 0 ? textEntered.split(/\s+/).length : 0;
+            let elapsedTime = (new Date().getTime() - startTime) / 1000; // Convert to seconds
+            let speed = Math.round((wordCount / elapsedTime) * 60); // Words per minute
+            
+            document.getElementById("result").innerText = `Typing Speed: ${speed} WPM`;
+        }
+
+        function updateTimerDisplay(timeLeft) {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            document.getElementById("timer").innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        
+    </script>
+</body>
+</html>
